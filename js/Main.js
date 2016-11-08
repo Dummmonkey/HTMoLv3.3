@@ -878,18 +878,8 @@ function Main()
         else if (comando=='color')
         {
             //alert("comando color");
-            var color=inst;
-            for(var o in AtomosSeleccionados) //son los objetos seleccionados
-            {
-                /*
-                var ato=AtomosSeleccionados[o];
-
-
-                ato.Color=LstColors[inst].color;
-                //alert(ato.Color);
-                ato.Mesh.material.color.setHex(ato.Color);
-                */
-            }
+            var color=inst.toLowerCase();
+            CambiarColor(color);
 
         }
         else if (comando=='show')

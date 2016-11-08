@@ -1044,13 +1044,21 @@ function EliminarSeleccion()
                 for (var i = 0; i < AtomosSeleccionados.length; i++) {
                     var atomTemp = AtomosSeleccionados[i];
 
-                    if (atomTemp.State == 'Active') {
+                    if (atomTemp.State == 'Active') 
+                    {
+                        ////////////////////////////////////////
+                                    var colorSet = atomTemp.ColorRGB;
+                                    //quitar el átomo de la selecció (regresarlo a su color por defecto)
+                                    if (atomTemp.ColorDiferente) 
+                                    {
+                                        colorSet = atomTemp.ColorDos;
+                                    }
                         var mul = (atomTemp.PositionBSolid - 1) * nColor;
                         for (var z = 0; z < nColor;) {
-                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z] = atomTemp.ColorRGB[0];
-                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 1] = atomTemp.ColorRGB[1];
-                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 2] = atomTemp.ColorRGB[2];
-                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 3] = atomTemp.ColorRGB[3];
+                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z] = colorSet[0];
+                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 1] = colorSet[1];
+                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 2] = colorSet[2];
+                            ColorTotal[atomTemp.BloqueSolid - 1][mul + z + 3] = colorSet[3];
                             z = z + 4;
                         }
                         atomTemp.Seleccionado = false;
@@ -1080,4 +1088,83 @@ function EliminarSeleccion()
             AtomosSeleccionados = [];
 
 }
+
+function CambiarColor(color) //función para cambiar el color
+{
+    var ArrCont = [];
+    var real = false;
+
+    var colorRGB = null;
+    if (color=='red') 
+    {
+        colorRGB = [ 1.0, 0.0, 0.0, 1.0 ];
+    }
+    else if(color=='white')
+    {
+        colorRGB = [1.0, 1.0, 1.0, 1.0];;
+    }
+    else if(color=='blue')
+    {
+        colorRGB = [0.0, 0.0, 1.0, 1.0];
+    }
+    else if(color=='atom') 
+    {
+        real = true;
+    }
+    for(var i=0; i<AtomosSeleccionados.length; i++)
+    {
+        var atom = AtomosSeleccionados[i];
+        if (real) 
+        {   
+            atom.ColorDiferente = false;
+            colorRGB=atom.ColorRGB;
+        }
+        else
+        {
+            atom.ColorDiferente = true;
+            atom.ColorDos = colorRGB;
+        }
+
+        var mul=(atom.PositionBSolid-1) * nColor;
+        for (var z = 0; z < nColor;) 
+        {
+            ColorTotal[atom.BloqueSolid-1][mul + z]   = colorRGB[0];  //va a ser el color de la selección
+            ColorTotal[atom.BloqueSolid-1][mul + z + 1]=colorRGB[1];
+            ColorTotal[atom.BloqueSolid-1][mul + z + 2]=colorRGB[2];
+            ColorTotal[atom.BloqueSolid-1][mul + z + 3]=colorRGB[3];
+            z = z + 4;
+        }
+
+        var agregar = true;
+        for (var j = 0; j < ArrCont.length; j++) 
+        {
+            if ((atom.BloqueSolid - 1) == ArrCont[j]) 
+            {
+                agregar = false;
+                break;
+            }
+        }
+        if (agregar == true) 
+        {
+            ArrCont.push(atom.BloqueSolid - 1);
+        }
+    }
+
+    for (var i = 0; i < ArrCont.length; i++) 
+    {
+        gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexColorBuffer[ArrCont[i]]);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ColorTotal[ArrCont[i]]), gl.DYNAMIC_DRAW);
+        sphereVertexColorBuffer[ArrCont[i]].itemSize = 4;
+        sphereVertexColorBuffer[ArrCont[i]].numItems = ColorTotal[ArrCont[i]].length / 4;
+        gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+    }
+
+
+
+}
+
+
+
+
 

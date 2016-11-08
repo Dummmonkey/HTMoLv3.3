@@ -117,6 +117,10 @@ function Atom(number,x,y,z,state,element,nameatom)
     this.BloqueSolid=0;
     this.PositionBSolid=0;
     ////////////////////////
+    //para mantener o no un color diferente
+    this.ColorDiferente = false;
+    this.ColorDos=null;
+
 
     this.id=null; //es para poner el órden en el que aparecen
 

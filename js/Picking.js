@@ -120,14 +120,19 @@ function handleMouseDown(event)
                                 if (atom.Seleccionado == true) 
                                 {
                                     ////////////////////////////////////////
-                                    //quitar el átomo 
+                                    var colorSet = atom.ColorRGB;
+                                    //quitar el átomo de la selecció (regresarlo a su color por defecto)
+                                    if (atom.ColorDiferente) 
+                                    {
+                                        colorSet = atom.ColorDos;
+                                    }
                                     var mul=(atom.PositionBSolid-1) * nColor;
                                     for (var z = 0; z < nColor;) 
                                     {
-                                        ColorTotal[atom.BloqueSolid-1][mul + z]   = atom.ColorRGB[0];
-                                        ColorTotal[atom.BloqueSolid-1][mul + z + 1]=atom.ColorRGB[1];
-                                        ColorTotal[atom.BloqueSolid-1][mul + z + 2]=atom.ColorRGB[2];
-                                        ColorTotal[atom.BloqueSolid-1][mul + z + 3]=atom.ColorRGB[3];
+                                        ColorTotal[atom.BloqueSolid-1][mul + z]   = colorSet[0];
+                                        ColorTotal[atom.BloqueSolid-1][mul + z + 1]=colorSet[1];
+                                        ColorTotal[atom.BloqueSolid-1][mul + z + 2]=colorSet[2];
+                                        ColorTotal[atom.BloqueSolid-1][mul + z + 3]=colorSet[3];
                                         z = z + 4;
                                     }
                                     gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexColorBuffer[atom.BloqueSolid-1]);
