@@ -1699,6 +1699,51 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
             //-----------Julio
 
+
+             //////////////// parte de las mediciones
+            diPosition = [];
+            diColor = [];
+            diNormal = [];
+            diIndex = [];
+            chaIndex = [];
+            diColorDif = [];
+            if (DistanceBool)    //cada frame se van a limpiar y a procesar
+            {
+                var count = 2 * Math.floor(AtomosSeleccionados.length/2);
+                for(var k=0; k < count;)
+                {
+                    var atm1 = AtomosSeleccionados[AtomosSeleccionados[k]];
+                    var atm2 = AtomosSeleccionados[AtomosSeleccionados[k+1]];
+
+                    var temp1 = molecule.LstAtoms.length*pos;
+
+                    if ( temp1 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
+                    {
+                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+                    }
+                    else
+                    {
+                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+                    }
+                    NumDistance(xx,yy,zz,xx2,yy2,zz2);
+
+                    k=k+2;
+                }
+                initBufDigit();
+            }
+
             framecounter(numframe+1);
 
 
@@ -1733,32 +1778,38 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
             }
 
+            ////////////////////////////////////////////////////////////////////////////////////////
             //////PARTE DE LOS ENLACES
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, colorVertexBuffer);
-            gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colorVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER, null);
+            if (molecule.LstBonds.length>0) 
+            {
+                gl.bindBuffer(gl.ARRAY_BUFFER, colorVertexBuffer);
+                gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colorVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, ColorDifBuffer);
-            gl.vertexAttribPointer(currentProgram.ColorDif, ColorDifBuffer.itemSize, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                gl.bindBuffer(gl.ARRAY_BUFFER, ColorDifBuffer);
+                gl.vertexAttribPointer(currentProgram.ColorDif, ColorDifBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, lineNormalBuffer);
-            gl.vertexAttribPointer(currentProgram.vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                gl.bindBuffer(gl.ARRAY_BUFFER, lineNormalBuffer);
+                gl.vertexAttribPointer(currentProgram.vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, ChainBufferBnd);
-            gl.vertexAttribPointer(currentProgram.Opcion, ChainBufferBnd.itemSize, gl.FLOAT, false, 0, 0);
-            gl.bindBuffer(gl.ARRAY_BUFFER, null);
-            setMatrixUniforms();
+                gl.bindBuffer(gl.ARRAY_BUFFER, ChainBufferBnd);
+                gl.vertexAttribPointer(currentProgram.Opcion, ChainBufferBnd.itemSize, gl.FLOAT, false, 0, 0);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                setMatrixUniforms();
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, lineVertexPositionBuffer);
-            gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
-            gl.drawArrays(gl.LINES, 0, lineVertexPositionBuffer.numItems);
-            gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                gl.bindBuffer(gl.ARRAY_BUFFER, lineVertexPositionBuffer);
+                gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
+                gl.drawArrays(gl.LINES, 0, lineVertexPositionBuffer.numItems);
+                gl.bindBuffer(gl.ARRAY_BUFFER, null);
+            }
 
             //////////////////////////////////////////////////////////////////lineas Skeletons
-                    gl.bindBuffer(gl.ARRAY_BUFFER, colSkeleVerBuf);
+            if (molecule.LstBondsSkeleton.length>0) 
+            {
+                gl.bindBuffer(gl.ARRAY_BUFFER, colSkeleVerBuf);
                     gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colSkeleVerBuf.itemSize, gl.FLOAT, false, 0, 0);
                     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
@@ -1780,9 +1831,42 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     gl.drawArrays(gl.LINES, 0, lineSkeleVerPosBuf.numItems);
                     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
+            }
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////// PARTE DE LOS DÍGITOS ////////////////////////////////////////////////7
+                if (diPosition.length>0) 
+                {
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diPosBuffer);
+                    gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, diPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diColorBuffer);
+                    gl.vertexAttribPointer(currentProgram.textureCoordAttribute, diColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diColorBufferDif);
+                    gl.vertexAttribPointer(currentProgram.ColorDif, diColorBufferDif.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, chaIndexBuffer);
+                    gl.vertexAttribPointer(currentProgram.Opcion, chaIndexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diNorBuffer);
+                    gl.vertexAttribPointer(currentProgram.vertexNormalAttribute, diNorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                    setMatrixUniforms();
+
+                    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, diIndexBuffer);
+                    gl.drawElements(gl.TRIANGLES, diIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+                    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+
+                }
+
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if(OptRep==true)///-----Julio
+                if(OptRep==true)//---------Julio falta validar cuando no hay ca
                   DrawSpline();
+                //--------------------
 
         }
 
