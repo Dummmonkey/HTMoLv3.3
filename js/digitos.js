@@ -1,17 +1,17 @@
  //función para imprimir el valor por medio de triángulos
  var indxOffset=0; //es para el offset que me genere cáda dígito --------------------------------------hacerlo global
 
- function NumDistance(atm1, atm2)
+ function NumDistance(a1X,a1Y,a1Z,a2X,a2Y,a2Z)
  {
 
-    var xx1=atm2.X;
-    var xx2=atm1.X;
+    var xx1=a2X;
+    var xx2=a1X;
 
-    var yy1=atm2.Y;
-    var yy2=atm1.Y;
+    var yy1=a2Y;
+    var yy2=a1Y;
 
-    var zz1=atm2.Z;
-    var zz2=atm1.Z;
+    var zz1=a2Z;
+    var zz2=a1Z;
 
     var dist = Math.sqrt(   Math.pow( xx1 - xx2 , 2) + Math.pow( yy1 - yy2, 2) + Math.pow( zz1 - zz2, 2) );
 
@@ -67,19 +67,19 @@
  }
 
 
-function NumAngle(atm1, atm2, atm3)
+function NumAngle(a1X, a1Y, a1Z, a2X, a2Y, a2Z, a3X, a3Y, a3Z)
 {
-    var xx1=atm1.X;
-    var xx2=atm2.X;
-    var xx3=atm3.X;
+    var xx1=a1X;
+    var xx2=a2X;
+    var xx3=a3X;
 
-    var yy1=atm1.Y;
-    var yy2=atm2.Y;
-    var yy3=atm3.Y;
+    var yy1=a1Y;
+    var yy2=a2Y;
+    var yy3=a3Y;
 
-    var zz1=atm1.Z;
-    var zz2=atm2.Z;
-    var zz3=atm3.Z;
+    var zz1=a1Z;
+    var zz2=a2Z;
+    var zz3=a3Z;
 
     var v1 = [ xx2-xx1, yy2-yy1, zz2-zz1 ];
     var v2 = [ xx2-xx3, yy2-yy3, zz2-zz3 ];
@@ -519,30 +519,9 @@ function DrawNumber(Num, xx3, yy3, zz3, AngleBool)
 
                 j=j+3;
             }
-
-
         }
-
-        
-
-       initBufDigit();
-
 }
 
- /////////////////////////////////////////// PARA DIGITOS ///////////////////////////////////////////
-    var diPosition = [];
-    var diColor = [];
-    var diNormal = [];
-    var diIndex = [];
-    var chaIndex = [];
-    var diColorDif = [];
-
-    var diPosBuffer = [];
-    var diColorBuffer = [];
-    var diNorBuffer = [];
-    var diIndexBuffer = [];
-    var chaIndexBuffer = [];
-    var diColorBufferDif = [];
 
 //dígito 0
 var diPos0 = [

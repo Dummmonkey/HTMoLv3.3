@@ -349,6 +349,21 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
     var lineSplNor=[]; //para el arreglo de js de las normales
     var ChainSplIndexBnd=[]; //para el arreglo en javascript del indice de la cadena
     var OptRep=false;//Para que no haga spline si es que no se llama
+
+    /////////////////////////////////////////// PARA DIGITOS ///////////////////////////////////////////
+    var diPosition = [];
+    var diColor = [];
+    var diNormal = [];
+    var diIndex = [];
+    var chaIndex = [];
+    var diColorDif = [];
+
+    var diPosBuffer = [];
+    var diColorBuffer = [];
+    var diNorBuffer = [];
+    var diIndexBuffer = [];
+    var chaIndexBuffer = [];
+    var diColorBufferDif = [];
     //-------------
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -473,24 +488,35 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                             z=z+3;
                             }
                         }
-                        else
-                        {
-
-
-                        }
-
-                        //alert("vertex"+vertexPositionData[atom.BloqueSolid-1].length);
 
                     }
                     else
                     {
-                        for (var z=0; z<verArray.length;)
+                        if (atom.Representation=='SB')
                         {
-                        vertexPositionData[0].push(verArray[z]   + coordsX1[s] -Cx);
-                        vertexPositionData[0].push(verArray[z+1] + coordsY1[s] -Cy);
-                        vertexPositionData[0].push(verArray[z+2] + coordsZ1[s] -Cz);
+                            ////////////si el átomo está en SB
+                            for (var z=0; z<verArray.length;)
+                            {
+                            vertexPositionData[0].push(verArray[z]   + coordsX1[s] -Cx);
+                            vertexPositionData[0].push(verArray[z+1] + coordsY1[s] -Cy);
+                            vertexPositionData[0].push(verArray[z+2] + coordsZ1[s] -Cz);
 
-                        z=z+3;
+
+                            z=z+3;
+                            }
+
+                        }
+                        else if (atom.Representation=='CPK')
+                        {
+                            ////////////si el átomo está en cpk
+                            for (var z=0; z<verArray.length;)
+                            {
+                            vertexPositionData[0].push(verArrayH[z]   + coordsX1[s] -Cx);
+                            vertexPositionData[0].push(verArrayH[z+1] + coordsY1[s] -Cy);
+                            vertexPositionData[0].push(verArrayH[z+2] + coordsZ1[s] -Cz);
+
+                            z=z+3;
+                            }
                         }
 
                     }
@@ -555,23 +581,35 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                                     }
 
                                 }
-                                else
-                                {
-
-
-                                }
 
                             }
                             else
                             {
-                                alert("coordsX1");
-                                for (var z=0; z<verArray.length;)
+                                if (atom.Representation=='SB')
                                 {
-                                vertexPositionData[i].push(verArray[z]   + coordsX1[s] -Cx);
-                                vertexPositionData[i].push(verArray[z+1] + coordsY1[s] -Cy);
-                                vertexPositionData[i].push(verArray[z+2] + coordsZ1[s] -Cz);
+                                    ////////////si el átomo está en SB
+                                    for (var z=0; z<verArray.length;)
+                                    {
+                                    vertexPositionData[i].push(verArray[z]   + coordsX1[s] -Cx);
+                                    vertexPositionData[i].push(verArray[z+1] + coordsY1[s] -Cy);
+                                    vertexPositionData[i].push(verArray[z+2] + coordsZ1[s] -Cz);
 
-                                z=z+3;
+                                    z=z+3;
+                                    }
+
+                                }
+                                else if (atom.Representation=='CPK')
+                                {
+                                    ////////////si el átomo está en cpk
+                                    for (var z=0; z<verArray.length;)
+                                    {
+                                    vertexPositionData[i].push(verArrayH[z]   + coordsX1[s] -Cx);
+                                    vertexPositionData[i].push(verArrayH[z+1] + coordsY1[s] -Cy);
+                                    vertexPositionData[i].push(verArrayH[z+2] + coordsZ1[s] -Cz);
+
+                                    z=z+3;
+                                    }
+
                                 }
 
                             }
@@ -622,22 +660,36 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                                     }
 
                                 }
-                                else
-                                {
-
-
-                                }
 
                             }
                             else
                             {
-                                for (var z=0; z<verArray.length;)
+                                if (atom.Representation=='SB')
                                 {
+                                    ////////////si el átomo está en SB
+                                    //console.log(Cx + ' ' + Cy + ' ' + Cz);
+                                    for (var z=0; z<verArray.length;)
+                                    {
                                     vertexPositionData[i].push(verArray[z]   + coordsX1[s] -Cx);
                                     vertexPositionData[i].push(verArray[z+1] + coordsY1[s] -Cy);
                                     vertexPositionData[i].push(verArray[z+2] + coordsZ1[s] -Cz);
 
                                     z=z+3;
+                                    }
+
+                                }
+                                else if (atom.Representation=='CPK')
+                                {
+                                    ////////////si el átomo está en cpk
+                                    for (var z=0; z<verArray.length;)
+                                    {
+                                    vertexPositionData[i].push(verArrayH[z]   + coordsX1[s] -Cx);
+                                    vertexPositionData[i].push(verArrayH[z+1] + coordsY1[s] -Cy);
+                                    vertexPositionData[i].push(verArrayH[z+2] + coordsZ1[s] -Cz);
+
+                                    z=z+3;
+                                    }
+
                                 }
 
                             }
@@ -692,7 +744,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 }
                 else
                 {
-                    alert("no");
+                    verticesLineas.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); /////////////////////////////77
+                    verticesLineas.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
+                    verticesLineas.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 if ( temp2 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
@@ -704,7 +758,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 }
                 else
                 {
-                    alert("no2");
+                    verticesLineas.push(coordsX1[parseInt(temp2) + parseInt(atm2.id) -1] -Cx);
+                    verticesLineas.push(coordsY1[parseInt(temp2) + parseInt(atm2.id) -1] -Cy);
+                    verticesLineas.push(coordsZ1[parseInt(temp2) + parseInt(atm2.id) -1] -Cz);
                 }
 
 
@@ -741,14 +797,16 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     //alert(atm1.NumberAtom);
                     //alert(parseInt(temp1) + parseInt(atm1.NumberAtom));
                     //alert(coordsX[parseInt(temp1) + parseInt(atm1.NumberAtom)]);
-                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); /////////////////////////////77
+                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
                     verLineSkele.push(coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 else
                 {
-                    alert("no");
+                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
+                    verLineSkele.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 if ( temp2 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
@@ -760,7 +818,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 }
                 else
                 {
-                    alert("no2");
+                    verLineSkele.push(coordsX1[parseInt(temp2) + parseInt(atm2.id) -1] -Cx);
+                    verLineSkele.push(coordsY1[parseInt(temp2) + parseInt(atm2.id) -1] -Cy);
+                    verLineSkele.push(coordsZ1[parseInt(temp2) + parseInt(atm2.id) -1] -Cz);
                 }
 
 
@@ -783,6 +843,97 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
             //-----------------------
 
+            //////////////// parte de las mediciones
+            diPosition = [];
+            diColor = [];
+            diNormal = [];
+            diIndex = [];
+            chaIndex = [];
+            diColorDif = [];
+            if (DistanceBool)    //cada frame se van a limpiar y a procesar
+            {
+                var count = 2 * Math.floor(AtomosSeleccionados.length/2);
+                for(var k=0; k < count;)
+                {
+                    var atm1 = AtomosSeleccionados[AtomosSeleccionados[k]];
+                    var atm2 = AtomosSeleccionados[AtomosSeleccionados[k+1]];
+
+                    var temp1 = molecule.LstAtoms.length*pos;
+
+                    if ( temp1 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
+                    {
+                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+                    }
+                    else
+                    {
+                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+                    }
+                    NumDistance(xx,yy,zz,xx2,yy2,zz2);
+
+                    k=k+2;
+                }
+                initBufDigit();
+            }
+
+            if(AngleBool)
+            {
+                var count = 3 * Math.floor(AtomosSeleccionados.length/3);
+                for(var k=0; k < count;)
+                {
+                    var atm1 = AtomosSeleccionados[AtomosSeleccionados[k]];
+                    var atm2 = AtomosSeleccionados[AtomosSeleccionados[k+1]];
+                    var atm3 = AtomosSeleccionados[AtomosSeleccionados[k+1]];
+
+                    var temp1 = molecule.LstAtoms.length*pos;
+
+                    if ( temp1 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
+                    {
+                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+
+                        xx3 = coordsX[parseInt(temp1) + parseInt(atm3.id) -1] -Cx;
+                        yy3 = coordsY[parseInt(temp1) + parseInt(atm3.id) -1] -Cy;
+                        zz3 = coordsZ[parseInt(temp1) + parseInt(atm3.id) -1] -Cz;
+                    }
+                    else
+                    {
+                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
+
+                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
+
+                        xx3 = coordsX1[parseInt(temp1) + parseInt(atm3.id) -1] -Cx;
+                        yy3 = coordsY1[parseInt(temp1) + parseInt(atm3.id) -1] -Cy;
+                        zz3 = coordsZ1[parseInt(temp1) + parseInt(atm3.id) -1] -Cz;
+                    }
+                    NumAngle(xx,yy,zz,xx2,yy2,zz2,xx3,yy3,zz3);
+
+                    k=k+3;
+                }
+                initBufDigit();
+
+            }
+
             framecounter(numframe+1);
 
             if(numframe<parseInt(totalframes)-1)
@@ -796,7 +947,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
             else
             {
-                console.log("segunda parte");
+                //console.log("segunda parte");
                 var button=document.getElementById("playpause");
                 button.className = "icon-logo-de-youtube";
                 button.value="Play";
@@ -806,7 +957,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 bndfinal=false;
                 numframe=0;
                 pos=0;
-                console.log("segunda parte sale");
+                //console.log("segunda parte sale");
             }
 
 
@@ -894,6 +1045,36 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
             }
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                ///////////////////////////// PARTE DE LOS DÍGITOS ////////////////////////////////////////////////7
+                if (diPosition.length>0) 
+                {
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diPosBuffer);
+                    gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, diPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diColorBuffer);
+                    gl.vertexAttribPointer(currentProgram.textureCoordAttribute, diColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diColorBufferDif);
+                    gl.vertexAttribPointer(currentProgram.ColorDif, diColorBufferDif.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, chaIndexBuffer);
+                    gl.vertexAttribPointer(currentProgram.Opcion, chaIndexBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+                    gl.bindBuffer(gl.ARRAY_BUFFER, diNorBuffer);
+                    gl.vertexAttribPointer(currentProgram.vertexNormalAttribute, diNorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+                    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+                    setMatrixUniforms();
+
+                    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, diIndexBuffer);
+                    gl.drawElements(gl.TRIANGLES, diIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+                    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+
+                }
 
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 if(OptRep==true)//---------Julio falta validar cuando no hay ca
@@ -1223,11 +1404,6 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                             z=z+3;
                             }
                         }
-                        else
-                        {
-
-
-                        }
 
                         //alert("vertex"+vertexPositionData[atom.BloqueSolid-1].length);
 
@@ -1305,11 +1481,6 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                                     }
 
                                 }
-                                else
-                                {
-
-
-                                }
 
                             }
                             else
@@ -1372,11 +1543,6 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                                     }
 
                                 }
-                                else
-                                {
-
-
-                                }
 
                             }
                             else
@@ -1435,14 +1601,16 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     //alert(atm1.NumberAtom);
                     //alert(parseInt(temp1) + parseInt(atm1.NumberAtom));
                     //alert(coordsX[parseInt(temp1) + parseInt(atm1.NumberAtom)]);
-                    verticesLineas.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); /////////////////////////////77
+                    verticesLineas.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
                     verticesLineas.push(coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verticesLineas.push(coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 else
                 {
-                    alert("no");
+                    verticesLineas.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
+                    verticesLineas.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
+                    verticesLineas.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 if ( temp2 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
@@ -1454,7 +1622,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 }
                 else
                 {
-                    alert("no2");
+                    verticesLineas.push(coordsX1[parseInt(temp2) + parseInt(atm2.id) -1] -Cx);
+                    verticesLineas.push(coordsY1[parseInt(temp2) + parseInt(atm2.id) -1] -Cy);
+                    verticesLineas.push(coordsZ1[parseInt(temp2) + parseInt(atm2.id) -1] -Cz);
                 }
 
 
@@ -1487,14 +1657,16 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     //alert(atm1.NumberAtom);
                     //alert(parseInt(temp1) + parseInt(atm1.NumberAtom));
                     //alert(coordsX[parseInt(temp1) + parseInt(atm1.NumberAtom)]);
-                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); /////////////////////////////77
+                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
                     verLineSkele.push(coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 else
                 {
-                    alert("no");
+                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
+                    verLineSkele.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 if ( temp2 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
@@ -1506,7 +1678,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 }
                 else
                 {
-                    alert("no2");
+                    verLineSkele.push(coordsX1[parseInt(temp2) + parseInt(atm2.id) -1] -Cx);
+                    verLineSkele.push(coordsY1[parseInt(temp2) + parseInt(atm2.id) -1] -Cy);
+                    verLineSkele.push(coordsZ1[parseInt(temp2) + parseInt(atm2.id) -1] -Cz);
                 }
 
 

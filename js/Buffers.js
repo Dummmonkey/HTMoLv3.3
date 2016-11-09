@@ -35,6 +35,19 @@ function cleanMemory()
       lineSplNor = [];
       ChainSplIndexBnd = [];
       //------Julio
+
+      //////////////// parte de las mediciones
+            diPosition = [];
+            diColor = [];
+            diNormal = [];
+            diIndex = [];
+            chaIndex = [];
+            diColorDif = [];
+
+            DistanceBool=false;
+            AngleBool=false;
+
+            indxOffset=0;
 }
 
 function initBuffersSpheresSB()

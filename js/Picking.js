@@ -75,8 +75,9 @@ function handleMouseDown(event)
                                 //procesar los últimos 2
                                 var atm1 = AtomosSeleccionados[AtomosSeleccionados.length - 1];
                                 var atm2 = AtomosSeleccionados[AtomosSeleccionados.length - 2];
-                                NumDistance(atm1, atm2);
+                                NumDistance(atm1.X, atm1.Y, atm1.Z, atm2.X, atm2.Y, atm2.Z);
                             }
+                            initBufDigit();
 
                         }
                         else if(AngleBool)
@@ -103,8 +104,9 @@ function handleMouseDown(event)
                                 var atm2 = AtomosSeleccionados[AtomosSeleccionados.length - 2];
                                 var atm3 = AtomosSeleccionados[AtomosSeleccionados.length - 3];
 
-                                NumAngle(atm1, atm2, atm3);
+                                NumAngle(atm1.X, atm1.Y, atm1.Z, atm2.X, atm2.Y, atm2.Z, atm3.X, atm3.Y, atm3.Z);
                             }
+                            initBufDigit();
 
                         }
 
