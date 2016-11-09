@@ -72,10 +72,47 @@ function handleMouseDown(event)
                             AtomosSeleccionados.push(atom);
                             if (!((AtomosSeleccionados.length) % 2)) 
                             {
+                                var x1, y1, z1, x2, y2, z2;
                                 //procesar los últimos 2
                                 var atm1 = AtomosSeleccionados[AtomosSeleccionados.length - 1];
                                 var atm2 = AtomosSeleccionados[AtomosSeleccionados.length - 2];
-                                NumDistance(atm1.X, atm1.Y, atm1.Z, atm2.X, atm2.Y, atm2.Z);
+                                if (DinamicaActiva)  //
+                                {
+                                    var s=molecule.LstAtoms.length * pos + (atm1.id-1);
+                                    var t=molecule.LstAtoms.length * pos + (atm2.id-1);
+                                    //entonces toman las posiciones x y z del frame en el que se encuentra
+                                    if(bndbuffer==0)
+                                    {
+                                        x1=coordsX[s];
+                                        y1=coordsY[s];
+                                        z1=coordsZ[s];
+
+                                        x2=coordsX[t];
+                                        y2=coordsY[t];
+                                        z2=coordsZ[t];
+                                    }
+                                    else
+                                    {
+                                        x1=coordsX1[s];
+                                        y1=coordsY1[s];
+                                        z1=coordsZ1[s];
+
+                                        x2=coordsX1[t];
+                                        y2=coordsY1[t];
+                                        z2=coordsZ1[t];
+                                    }
+                                }
+                                else
+                                {
+                                    x1=atm1.X;
+                                    y1=atm1.Y;
+                                    z1=atm1.Z;
+
+                                    x2=atm2.X;
+                                    y2=atm2.Y;
+                                    z2=atm2.Z; 
+                                }
+                                NumDistance(x1, y1, z1, x2, y2, z2);
                                 initBufDigit();
                             }
 
@@ -95,16 +132,66 @@ function handleMouseDown(event)
                             gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(ColorTotal[atom.BloqueSolid - 1]), gl.DYNAMIC_DRAW);
                             sphereVertexColorBuffer[atom.BloqueSolid - 1].numItems = ColorTotal[atom.BloqueSolid - 1].length / 4;
                             gl.bindBuffer(gl.ARRAY_BUFFER, null);
-                            //////////////////////////////////////////////////
+                            ////////////////////////////////////////////////
                             AtomosSeleccionados.push(atom);
                             if (!((AtomosSeleccionados.length) % 3)) //cada que se seleccionen 3 átomos
                             {
-                                //procesar los últimos 2
+                                var x1, y1, z1, x2, y2, z2, x3, y3, z3;
+                                //procesar los últimos 3
                                 var atm1 = AtomosSeleccionados[AtomosSeleccionados.length - 1];
                                 var atm2 = AtomosSeleccionados[AtomosSeleccionados.length - 2];
                                 var atm3 = AtomosSeleccionados[AtomosSeleccionados.length - 3];
+                                if (DinamicaActiva)  //
+                                {
+                                    var s=molecule.LstAtoms.length * pos + (atm1.id-1);
+                                    var t=molecule.LstAtoms.length * pos + (atm2.id-1);
+                                    var u=molecule.LstAtoms.length * pos + (atm3.id-1);
+                                    //entonces toman las posiciones x y z del frame en el que se encuentra
+                                    if(bndbuffer==0)
+                                    {
+                                        x1=coordsX[s];
+                                        y1=coordsY[s];
+                                        z1=coordsZ[s];
 
-                                NumAngle(atm1.X, atm1.Y, atm1.Z, atm2.X, atm2.Y, atm2.Z, atm3.X, atm3.Y, atm3.Z);
+                                        x2=coordsX[t];
+                                        y2=coordsY[t];
+                                        z2=coordsZ[t];
+
+                                        x3=coordsX[u];
+                                        y3=coordsY[u];
+                                        z3=coordsZ[u];
+                                    }
+                                    else
+                                    {
+                                        x1=coordsX1[s];
+                                        y1=coordsY1[s];
+                                        z1=coordsZ1[s];
+
+                                        x2=coordsX1[t];
+                                        y2=coordsY1[t];
+                                        z2=coordsZ1[t];
+
+                                        x3=coordsX1[u];
+                                        y3=coordsY1[u];
+                                        z3=coordsZ1[u];
+                                    }
+                                }
+                                else
+                                {
+                                    x1=atm1.X;
+                                    y1=atm1.Y;
+                                    z1=atm1.Z;
+
+                                    x2=atm2.X;
+                                    y2=atm2.Y;
+                                    z2=atm2.Z; 
+
+                                    x3=atm3.X;
+                                    y3=atm3.Y;
+                                    z3=atm3.Z; 
+                                }
+
+                                NumAngle(x1, y1, z1, x2, y2, z2, x3, y3, z3);
                                 initBufDigit();
                             }
 
