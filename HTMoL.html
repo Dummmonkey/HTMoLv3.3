@@ -852,7 +852,6 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             diColorDif = [];
 
             ndxOffset=0; 
-            
             if (DistanceBool)    //cada frame se van a limpiar y a procesar
             {
                 var count = 2 * Math.floor(AtomosSeleccionados.length/2);
@@ -1703,98 +1702,48 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             //-----------Julio
 
 
-           //////////////// parte de las mediciones
+             //////////////// parte de las mediciones
             diPosition = [];
             diColor = [];
             diNormal = [];
             diIndex = [];
             chaIndex = [];
             diColorDif = [];
-
-            ndxOffset=0; 
-            
             if (DistanceBool)    //cada frame se van a limpiar y a procesar
             {
                 var count = 2 * Math.floor(AtomosSeleccionados.length/2);
                 for(var k=0; k < count;)
                 {
-                    var atm1 = AtomosSeleccionados[k];
-                    var atm2 = AtomosSeleccionados[k+1];
+                    var atm1 = AtomosSeleccionados[AtomosSeleccionados[k]];
+                    var atm2 = AtomosSeleccionados[AtomosSeleccionados[k+1]];
 
                     var temp1 = molecule.LstAtoms.length*pos;
 
                     if ( temp1 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
                     {
-                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1];
-                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1];
-                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1];
+                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
 
-                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1];
-                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1];
-                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1];
+                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
                     }
                     else
                     {
-                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1];
-                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1];
-                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1];
+                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx;
+                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy;
+                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz;
 
-                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1];
-                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1];
-                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1];
+                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1] -Cx;
+                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1] -Cy;
+                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1] -Cz;
                     }
                     NumDistance(xx,yy,zz,xx2,yy2,zz2);
 
                     k=k+2;
                 }
                 initBufDigit();
-            }
-
-            if(AngleBool)
-            {
-                var count = 3 * Math.floor(AtomosSeleccionados.length/3);
-                for(var k=0; k < count;)
-                {
-                    var atm1 = AtomosSeleccionados[k];
-                    var atm2 = AtomosSeleccionados[k+1];
-                    var atm3 = AtomosSeleccionados[k+2];
-
-                    var temp1 = molecule.LstAtoms.length*pos;
-
-                    if ( temp1 <= coordsX.length )  //ESTÁ DENTRO DEL BUFFER1
-                    {
-                        xx = coordsX[parseInt(temp1) + parseInt(atm1.id) -1];
-                        yy = coordsY[parseInt(temp1) + parseInt(atm1.id) -1];
-                        zz = coordsZ[parseInt(temp1) + parseInt(atm1.id) -1];
-
-                        xx2 = coordsX[parseInt(temp1) + parseInt(atm2.id) -1];
-                        yy2 = coordsY[parseInt(temp1) + parseInt(atm2.id) -1];
-                        zz2 = coordsZ[parseInt(temp1) + parseInt(atm2.id) -1];
-
-                        xx3 = coordsX[parseInt(temp1) + parseInt(atm3.id) -1];
-                        yy3 = coordsY[parseInt(temp1) + parseInt(atm3.id) -1];
-                        zz3 = coordsZ[parseInt(temp1) + parseInt(atm3.id) -1];
-                    }
-                    else
-                    {
-                        xx = coordsX1[parseInt(temp1) + parseInt(atm1.id) -1];
-                        yy = coordsY1[parseInt(temp1) + parseInt(atm1.id) -1];
-                        zz = coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1];
-
-                        xx2 = coordsX1[parseInt(temp1) + parseInt(atm2.id) -1];
-                        yy2 = coordsY1[parseInt(temp1) + parseInt(atm2.id) -1];
-                        zz2 = coordsZ1[parseInt(temp1) + parseInt(atm2.id) -1];
-
-                        xx3 = coordsX1[parseInt(temp1) + parseInt(atm3.id) -1];
-                        yy3 = coordsY1[parseInt(temp1) + parseInt(atm3.id) -1];
-                        zz3 = coordsZ1[parseInt(temp1) + parseInt(atm3.id) -1];
-                    }
-                    NumAngle(xx,yy,zz,xx2,yy2,zz2,xx3,yy3,zz3);
-
-                    k=k+3;
-                }
-                initBufDigit();
-
             }
 
             framecounter(numframe+1);
