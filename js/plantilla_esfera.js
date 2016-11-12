@@ -1,21 +1,34 @@
 function initPlantillaEsfera() 
 {
 ///////////////////////////////////////////////PLANTILLA DE LA ESFERA ////////////////////////////////////////////
+var theta = null;
+var sinTheta = null;
+var cosTheta = null;
+
+var phi = null;
+var sinPhi = null;
+var cosPhi = null;
+
+var x = 0;
+var y = 0;
+var z = 0;
+
+
          for (var latNumber=0; latNumber <= latitudeBands; latNumber++) 
             {
-                var theta = latNumber * Math.PI / latitudeBands;
-                var sinTheta = Math.sin(theta);
-                var cosTheta = Math.cos(theta);
+                theta = latNumber * Math.PI / latitudeBands;
+                sinTheta = Math.sin(theta);
+                cosTheta = Math.cos(theta);
 
                 for (var longNumber=0; longNumber <= longitudeBands; longNumber++) 
                 {
-                    var phi = longNumber * 2 * Math.PI / longitudeBands;
-                    var sinPhi = Math.sin(phi);
-                    var cosPhi = Math.cos(phi);
+                    phi = longNumber * 2 * Math.PI / longitudeBands;
+                    sinPhi = Math.sin(phi);
+                    cosPhi = Math.cos(phi);
 
-                    var x = cosPhi * sinTheta;
-                    var y = cosTheta;
-                    var z = sinPhi * sinTheta;
+                    x = cosPhi * sinTheta;
+                    y = cosTheta;
+                    z = sinPhi * sinTheta;
                     
                     normalData.push(x);
                     normalData.push(y);
@@ -58,5 +71,24 @@ function initPlantillaEsfera()
 
                 }
             }
+
+var first = 0;
+var second = 0;
+            for (var latNumber=0; latNumber < latitudeBands; latNumber++)
+                    {
+                        for (var longNumber=0; longNumber < longitudeBands; longNumber++)
+                        {
+                            first = (latNumber * (longitudeBands + 1)) + longNumber;
+                            second = first + longitudeBands + 1;
+                            indx.push(first);
+                            indx.push(second);
+                            indx.push(first + 1);
+
+                            indx.push(second);
+                            indx.push(second + 1);
+                            indx.push(first + 1);
+
+                        }
+                    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

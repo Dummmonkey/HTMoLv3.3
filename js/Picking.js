@@ -203,7 +203,7 @@ function handleMouseDown(event)
                             /////////////////////////////// TECLA CTRL PRESIONADA //////////////////////////////////
                             ////////////////////////////////////////////////////////////////////////////////////////
                             //alert(atom.NumberAtom);
-                            if (event.ctrlKey) 
+                            if (event.shiftKey) 
                             {
                                 //////////////////// EL ATOMO SELECCIONADO YA ESTABA SELECCIONADO ///////////////////////
                                 if (atom.Seleccionado == true) 

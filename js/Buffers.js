@@ -11,6 +11,8 @@ function cleanMemory()
     indexData = [[]];
     normalDataN = [[]];
     ChainIndex=[[]];
+
+    indiceOffset=0;
     ////////////////////////
 
     //limpieza de los enlaces
@@ -131,23 +133,13 @@ function initBuffersSpheresSB()
 
             }
 
-            for (var latNumber=0; latNumber < latitudeBands; latNumber++)
+            for(var t=0; t<indx.length; t++)
             {
-                for (var longNumber=0; longNumber < longitudeBands; longNumber++)
-                {
-                    var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                    var second = first + longitudeBands + 1;
-                    indexData[0].push(first + ultimo);
-                    indexData[0].push(second + ultimo);
-                    indexData[0].push(first + 1 + ultimo);
+                indexData[0].push( indx[t] + indiceOffset);
 
-                    indexData[0].push(second + ultimo);
-                    indexData[0].push(second + 1 + ultimo);
-                    indexData[0].push(first + 1 + ultimo);
-
-                }
             }
-            ultimo = (indexData[0][indexData[0].length-2]) + 1;
+            indiceOffset= indiceOffset + 289;
+
             apuntador=apuntador+1;
 
                 //-----------------------------------------------------------------------------------------------------
@@ -221,6 +213,8 @@ function initBuffersSpheresSB()
 
             ChainIndex[i]=new Array();
 
+            indiceOffset=0;
+
             if (i==NoBloques-1) //esto es que llegó al último
             {
                 for(var j=0; j<Restantes; j++)
@@ -284,23 +278,11 @@ function initBuffersSpheresSB()
                         //ColorDiffuse=ColorDiffuse.concat(molecule.LstAtoms[apuntador].ColorRGBDiffuse);
                     }
 
-                    for (var latNumber=0; latNumber < latitudeBands; latNumber++)
+                    for(var t=0; t<indx.length; t++)
                     {
-                        for (var longNumber=0; longNumber < longitudeBands; longNumber++)
-                        {
-                            var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                            var second = first + longitudeBands + 1;
-                            indexData[i].push(first + ultimo);
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(second + 1 + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                        }
+                        indexData[i].push( indx[t] + indiceOffset);
                     }
-                    ultimo = (indexData[i][indexData[i].length-2]) + 1;
+                    indiceOffset= indiceOffset + 289;
                     apuntador=apuntador+1;
 
                     //---------------------------------------------------------------------------------------------------------
@@ -420,22 +402,11 @@ function initBuffersSpheresSB()
                     //ColorTotalDiffuse[i]=ColorTotalDiffuse[i].concat(molecule.LstAtoms[apuntador].ColorRGBDiffuse); //estas son las líneas que se congelan
                     //ColorTotal[i]=ColorTotal[i].concat(molecule.LstAtoms[apuntador].ColorRGB); //estas son las líneas que se congelan
 
-                    for (var latNumber=0; latNumber < latitudeBands; latNumber++)
+                    for(var t=0; t<indx.length; t++)
                     {
-                        for (var longNumber=0; longNumber < longitudeBands; longNumber++)
-                        {
-                            var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                            var second = first + longitudeBands + 1;
-                            indexData[i].push(first + ultimo);
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(second + 1 + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-                        }
+                        indexData[i].push( indx[t] + indiceOffset);
                     }
-                    ultimo = (indexData[i][indexData[i].length-2]) + 1;
+                    indiceOffset= indiceOffset + 289;
                     apuntador=apuntador+1;
 
                         //---------------------------------------------------------------------------------------------------
@@ -657,21 +628,11 @@ function initBuffersSpheresCPK()
                 ChainIndex[0].push(molecule.LstAtoms[apuntador].idChain);
             }
 
-            for (var latNumber = 0; latNumber < latitudeBands; latNumber++) {
-                for (var longNumber = 0; longNumber < longitudeBands; longNumber++) {
-                    var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                    var second = first + longitudeBands + 1;
-                    indexData[0].push(first + ultimo);
-                    indexData[0].push(second + ultimo);
-                    indexData[0].push(first + 1 + ultimo);
-
-                    indexData[0].push(second + ultimo);
-                    indexData[0].push(second + 1 + ultimo);
-                    indexData[0].push(first + 1 + ultimo);
-
-                }
-            }
-            ultimo = (indexData[0][indexData[0].length - 2]) + 1;
+            for(var t=0; t<indx.length; t++)
+                    {
+                        indexData[0].push( indx[t] + indiceOffset);
+                    }
+                    indiceOffset= indiceOffset + 289;
             apuntador = apuntador + 1;
 
             //-----------------------------------------------------------------------------------------------------
@@ -741,6 +702,8 @@ function initBuffersSpheresCPK()
             LstBSphe[i] = new Array();
 
             ChainIndex[i] = new Array();
+
+            indiceOffset=0;
 
             if (i == NoBloques - 1) //esto es que llegó al último
             {
@@ -896,21 +859,11 @@ function initBuffersSpheresCPK()
                         ChainIndex[i].push(molecule.LstAtoms[apuntador].idChain);
                     }
 
-                    for (var latNumber = 0; latNumber < latitudeBands; latNumber++) {
-                        for (var longNumber = 0; longNumber < longitudeBands; longNumber++) {
-                            var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                            var second = first + longitudeBands + 1;
-                            indexData[i].push(first + ultimo);
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(second + 1 + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                        }
+                    for(var t=0; t<indx.length; t++)
+                    {
+                        indexData[i].push( indx[t] + indiceOffset);
                     }
-                    ultimo = (indexData[i][indexData[i].length - 2]) + 1;
+                    indiceOffset= indiceOffset + 289;
                     apuntador = apuntador + 1;
 
                     //---------------------------------------------------------------------------------------------------------
@@ -1108,20 +1061,11 @@ function initBuffersSpheresCPK()
                     //ColorTotalDiffuse[i]=ColorTotalDiffuse[i].concat(molecule.LstAtoms[apuntador].ColorRGBDiffuse); //estas son las líneas que se congelan
                     //ColorTotal[i]=ColorTotal[i].concat(molecule.LstAtoms[apuntador].ColorRGB); //estas son las líneas que se congelan
 
-                    for (var latNumber = 0; latNumber < latitudeBands; latNumber++) {
-                        for (var longNumber = 0; longNumber < longitudeBands; longNumber++) {
-                            var first = (latNumber * (longitudeBands + 1)) + longNumber;
-                            var second = first + longitudeBands + 1;
-                            indexData[i].push(first + ultimo);
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-
-                            indexData[i].push(second + ultimo);
-                            indexData[i].push(second + 1 + ultimo);
-                            indexData[i].push(first + 1 + ultimo);
-                        }
+                    for(var t=0; t<indx.length; t++)
+                    {
+                        indexData[i].push( indx[t] + indiceOffset);
                     }
-                    ultimo = (indexData[i][indexData[i].length - 2]) + 1;
+                    indiceOffset= indiceOffset + 289;
                     apuntador = apuntador + 1;
 
                     //---------------------------------------------------------------------------------------------------
