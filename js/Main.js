@@ -233,14 +233,14 @@ function Main()
 
     this.Parse=function(txt)
     {
-       
+
         var comando=txt.substr(0, txt.indexOf(" ")).toLowerCase();//obtengo la primer palabra que es un comando
 
         //luego voy a obtener todo lo demás que va a ser la instrucción
-        var lines=txt.split(" ");        
+        var lines=txt.split(" ");
         var inst=txt.replace(comando + ' ','');
 
-        
+
         if (comando == 'select') {
             EliminarSeleccion();
 
@@ -269,7 +269,7 @@ function Main()
                 {
                     var  ele=arrComa[i];
 
-                    var n=ele.indexOf("-"); 
+                    var n=ele.indexOf("-");
                     var m=ele.indexOf(":")
                     if (n>(-1)) //quiere decir que es un rango ejemplo 34-38
                     {
@@ -277,13 +277,13 @@ function Main()
                         var arr2=ele.split("-");
                         var rng1 = parseInt(arr2[0]);
                         var rng2 = parseInt(arr2[1]);
-                        if (!isNaN(rng1) && !isNaN(rng2)) 
+                        if (!isNaN(rng1) && !isNaN(rng2))
                         {
                             //alert("los dos son numeros");
-                            if (rng1>0 && rng1 <= molecule.LstAtoms.length  && rng2>0 && rng2 <= molecule.LstAtoms.length) 
+                            if (rng1>0 && rng1 <= molecule.LstAtoms.length  && rng2>0 && rng2 <= molecule.LstAtoms.length)
                             {
-                                if (rng2 < rng1) 
-                                {  
+                                if (rng2 < rng1)
+                                {
                                     for(var j=rng2; j<=rng1; j++)
                                     {
                                         AtomosSeleccionados.push(molecule.LstAtoms[j - 1]);
@@ -298,7 +298,7 @@ function Main()
                                 }
 
                             }
-                            
+
                         }
 
                     }
@@ -307,10 +307,10 @@ function Main()
                         var arr3=ele.split(":");
                         if (arr3.length==3) //quiere decir que sì tiene bien las tres partes
                         {
-                            //0:2:1 
+                            //0:2:1
                             //N:6:2
                             //Voy a poner todos los casos
-                            if (arr3[0]==0) //todos los àtomos del aminoàciodo 
+                            if (arr3[0]==0) //todos los àtomos del aminoàciodo
                             {
                                 if (arr3[1]==0)  //todos los aminoácidos
                                 {
@@ -369,7 +369,7 @@ function Main()
 
                                 }
                                 else //en esta parte quiere decir que sí se ha especificado el aminoácido
-                                {    //en esta parte el aminoácido 
+                                {    //en esta parte el aminoácido
                                     if (!isNaN(arr3[1])) //el aminoácido es un índice pero hay que buscarlo
                                     {
                                         if (arr3[2]==0) //de todas las cadenas
@@ -383,7 +383,7 @@ function Main()
                                                     var amin = caden.LstAminoAcid[t];
                                                     //alert("length:"+amin.Number.replace(" ", "").length)
                                                     //alert("length:"+arr3[1].replace(" ", "").length)
-                                                    if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                    if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                     {
                                                         for(var v=0; v<amin.LstAtoms.length; v++)
                                                         {
@@ -411,7 +411,7 @@ function Main()
                                                         var amin = cha.LstAminoAcid[t];
                                                         //alert("length:"+amin.Number.replace(" ", "").length)
                                                         //alert("length:"+arr3[1].replace(" ", "").length)
-                                                        if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                        if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                         {
                                                             for(var v=0; v<amin.LstAtoms.length; v++)
                                                             {
@@ -439,7 +439,7 @@ function Main()
                                                             var amin = cha.LstAminoAcid[t];
                                                             //alert("length:"+amin.Number.replace(" ", "").length)
                                                             //alert("length:"+arr3[1].replace(" ", "").length)
-                                                            if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                            if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                             {
                                                                 for(var v=0; v<amin.LstAtoms.length; v++)
                                                                 {
@@ -553,7 +553,7 @@ function Main()
                                 {
                                     if (arr3[2]==0) //en todas las cadenas
                                     {
-                                        for (var j = 0; j < molecule.LstAtoms.length; j++) 
+                                        for (var j = 0; j < molecule.LstAtoms.length; j++)
                                         {
                                             if (arr3[0] == molecule.LstAtoms[j].Element) {
                                                 if (molecule.LstAtoms[j].State == 'Active') { //checar lo de Active
@@ -577,9 +577,9 @@ function Main()
                                                         var amin = cha.LstAminoAcid[t];
                                                         for(var v=0; v<amin.LstAtoms.length; v++)
                                                         {
-                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                             {
-                                                                if (amin.LstAtoms[v].State == 'Active') 
+                                                                if (amin.LstAtoms[v].State == 'Active')
                                                                 {
                                                                     AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                 }
@@ -587,7 +587,7 @@ function Main()
                                                         }
                                                     }
 
-                                                }  
+                                                }
                                         }
                                         else //la cadena está dada por una letra, primero la tengo que buscar
                                         {
@@ -604,9 +604,9 @@ function Main()
                                                             var amin = cha.LstAminoAcid[t];
                                                             for(var v=0; v<amin.LstAtoms.length; v++)
                                                             {
-                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                                 {
-                                                                    if (amin.LstAtoms[v].State == 'Active') 
+                                                                    if (amin.LstAtoms[v].State == 'Active')
                                                                     {
                                                                         AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                     }
@@ -625,7 +625,7 @@ function Main()
 
                                 }
                                 else //en esta parte quiere decir que sí se ha especificado el aminoácido
-                                {    //en esta parte el aminoácido 
+                                {    //en esta parte el aminoácido
                                     if (!isNaN(arr3[1])) //el aminoácido es un índice pero hay que buscarlo
                                     {
                                         if (arr3[2]==0) //de todas las cadenas
@@ -639,13 +639,13 @@ function Main()
                                                     var amin = caden.LstAminoAcid[t];
                                                     //alert("length:"+amin.Number.replace(" ", "").length)
                                                     //alert("length:"+arr3[1].replace(" ", "").length)
-                                                    if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                    if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                     {
                                                         for(var v=0; v<amin.LstAtoms.length; v++)
                                                         {
-                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                             {
-                                                                if (amin.LstAtoms[v].State == 'Active') 
+                                                                if (amin.LstAtoms[v].State == 'Active')
                                                                 {
                                                                     AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                 }
@@ -673,13 +673,13 @@ function Main()
                                                         var amin = cha.LstAminoAcid[t];
                                                         //alert("length:"+amin.Number.replace(" ", "").length)
                                                         //alert("length:"+arr3[1].replace(" ", "").length)
-                                                        if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                        if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                         {
                                                             for(var v=0; v<amin.LstAtoms.length; v++)
                                                             {
-                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                                 {
-                                                                    if (amin.LstAtoms[v].State == 'Active') 
+                                                                    if (amin.LstAtoms[v].State == 'Active')
                                                                     {
                                                                         AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                     }
@@ -707,13 +707,13 @@ function Main()
                                                             var amin = cha.LstAminoAcid[t];
                                                             //alert("length:"+amin.Number.replace(" ", "").length)
                                                             //alert("length:"+arr3[1].replace(" ", "").length)
-                                                            if (parseInt(arr3[1]) == parseInt(amin.Number)) 
+                                                            if (parseInt(arr3[1]) == parseInt(amin.Number))
                                                             {
                                                                 for(var v=0; v<amin.LstAtoms.length; v++)
                                                                 {
-                                                                    if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                                    if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                                     {
-                                                                        if (amin.LstAtoms[v].State == 'Active') 
+                                                                        if (amin.LstAtoms[v].State == 'Active')
                                                                         {
                                                                             AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                         }
@@ -752,9 +752,9 @@ function Main()
                                                     {
                                                         for(var v=0; v<amin.LstAtoms.length; v++)
                                                         {
-                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                            if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                             {
-                                                                if (amin.LstAtoms[v].State == 'Active') 
+                                                                if (amin.LstAtoms[v].State == 'Active')
                                                                 {
                                                                     AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                 }
@@ -784,9 +784,9 @@ function Main()
                                                         {
                                                             for(var v=0; v<amin.LstAtoms.length; v++)
                                                             {
-                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                                if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                                 {
-                                                                    if (amin.LstAtoms[v].State == 'Active') 
+                                                                    if (amin.LstAtoms[v].State == 'Active')
                                                                     {
                                                                         AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                     }
@@ -817,9 +817,9 @@ function Main()
                                                             {
                                                                 for(var v=0; v<amin.LstAtoms.length; v++)
                                                                 {
-                                                                    if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", "")) 
+                                                                    if (arr3[0].replace(" ", "") == amin.LstAtoms[v].Element.replace(" ", ""))
                                                                     {
-                                                                        if (amin.LstAtoms[v].State == 'Active') 
+                                                                        if (amin.LstAtoms[v].State == 'Active')
                                                                         {
                                                                             AtomosSeleccionados.push(amin.LstAtoms[v]);
                                                                         }
@@ -839,7 +839,7 @@ function Main()
                                     }
 
                                 }
-                                
+
                             }
 
                         }
@@ -865,7 +865,7 @@ function Main()
                     }
                 }
                 */
-                if (allselect==true) 
+                if (allselect==true)
                 {
                     AtomosSeleccionados=molecule.LstAtoms;
                 }
@@ -954,14 +954,23 @@ function Main()
         }
     }
 
-
+var menuStyle="";
+    var mediaquery = window.matchMedia("(max-width: 700px)");
+      if (mediaquery.matches) {
+        menuStyle+='<link rel="stylesheet" type="text/css" href="styles/style_tiny.css" />'
+        maxTam = "150px";
+      } else {
+        menuStyle+='<link rel="stylesheet" type="text/css" href="styles/style.css" />'
+        maxTam = "250px";
+      }
     this.MakeMenu=function(container)
     {
         var many = CAmino();//Esta en Buttons Function
         var hope="<link rel='stylesheet' type='text/css' href='styles/component.css' />"
                 +"<link rel='stylesheet' type='text/css' href='styles/Styles.css' />"
-                +"<link rel='stylesheet' type='text/css' href='styles/style.css' />"
+                +menuStyle
                 +"  <div id='Menus'>"
+                +"<div id='controles'></div>"
                 +"  <div id='zoom'>"
                 +"  <div id='menu'></div>"
                 +"</div>"
@@ -969,19 +978,19 @@ function Main()
 
                 +"<div id='Master' class='Master'>"
         +"<div id='Menu_Event'>"
-            +"<button onclick='toggleNavPanel()'><span class ='icon-menu' style='font-size:25px;'></span></button>"
+            +"<button onclick='toggleNavPanel()'><span class ='icon-menu' id='aprima'></span></button>"
         +"</div>"
         +"<div id='Menu_MenuPrincipal' class='menu_MenuPrincipal'>"
             +"<div class='menu_iconos'>"
-                +"<button onclick='menu_open()' class='B_open' ><span class ='icon-carpeta-abierta' style='font-size:25px;'></span><span class='tooltip1'>Open</span> </button>"
+                +"<button onclick='menu_open()' class='B_open' ><span class ='icon-carpeta-abierta'  id='a1'></span><span class='tooltip1'>Open</span> </button>"
                                 +"<br>"
-                +"<button onclick='menu_repre()' class='B_repre'><span class ='icon-molecula' style='font-size:25px;'></span><span class='tooltip2'>Representations</span></button>"
+                +"<button onclick='menu_repre()' class='B_repre'><span class ='icon-molecula'  id='a2'></span><span class='tooltip2'>Model</span></button>"
                                 +"<br>"
-                                +"<button onclick='menu_select()' class='B_select'><span class ='icon-seleccionar-objeto' style='font-size:25px;'><span class='tooltip3'>Select</span></span></button>"
+                                +"<button onclick='menu_select()' class='B_select'><span class ='icon-seleccionar-objeto'  id='a3'><span class='tooltip3'>Select</span></span></button>"
                                 +"<br>"
-                +"<button onclick='menu_action()' class='B_action'><span class ='icon-ajustes' style='font-size:25px;'></span><span class='tooltip4'>Actions</span> </button>"
+                +"<button onclick='menu_action()' class='B_action'><span class ='icon-ajustes'  id='a4'></span><span class='tooltip4'>Actions</span> </button>"
                                 +"<br>"
-                +"<button onclick='menu_view()' class='B_view' ><span class ='icon-orientacion' style='font-size:25px;'></span><span class='tooltip5'>View</span> </button>"
+                +"<button onclick='menu_view()' class='B_view' ><span class ='icon-orientacion' id='a5'></span><span class='tooltip5'>View</span> </button>"
             +"</div>"
         +"</div>"
 
