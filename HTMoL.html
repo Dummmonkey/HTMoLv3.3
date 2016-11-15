@@ -770,7 +770,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
             }
 
-            if (molecule.LstBonds.length>0) 
+            if (molecule.LstBonds.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, lineVertexPositionBuffer);
                 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticesLineas), gl.DYNAMIC_DRAW);
@@ -801,14 +801,14 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     //alert(atm1.NumberAtom);
                     //alert(parseInt(temp1) + parseInt(atm1.NumberAtom));
                     //alert(coordsX[parseInt(temp1) + parseInt(atm1.NumberAtom)]);
-                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
                     verLineSkele.push(coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 else
                 {
-                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
                     verLineSkele.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
@@ -830,7 +830,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
             }
 
-            if (molecule.LstBondsSkeleton.length>0) 
+            if (molecule.LstBondsSkeleton.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, lineSkeleVerPosBuf);
                 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verLineSkele), gl.DYNAMIC_DRAW);
@@ -855,7 +855,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             chaIndex = [];
             diColorDif = [];
 
-            indxOffset=0; 
+            indxOffset=0;
             if (DistanceBool)    //cada frame se van a limpiar y a procesar
             {
                 var count = 2 * Math.floor(AtomosSeleccionados.length/2);
@@ -1000,7 +1000,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
             //////PARTE DE LOS ENLACES
 
-            if (molecule.LstBonds.length>0) 
+            if (molecule.LstBonds.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, colorVertexBuffer);
                 gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colorVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1026,7 +1026,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
 
             //////////////////////////////////////////////////////////////////lineas Skeletons
-            if (molecule.LstBondsSkeleton.length>0) 
+            if (molecule.LstBondsSkeleton.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, colSkeleVerBuf);
                     gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colSkeleVerBuf.itemSize, gl.FLOAT, false, 0, 0);
@@ -1053,7 +1053,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ///////////////////////////// PARTE DE LOS DÍGITOS ////////////////////////////////////////////////7
-                if (diPosition.length>0) 
+                if (diPosition.length>0)
                 {
                     gl.bindBuffer(gl.ARRAY_BUFFER, diPosBuffer);
                     gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, diPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1124,7 +1124,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
 
                  //////////////////////////////////////////////////////////////////lineas
-                if (molecule.LstBonds.length>0) 
+                if (molecule.LstBonds.length>0)
                 {
                     gl.bindBuffer(gl.ARRAY_BUFFER, colorVertexBuffer);
                     gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colorVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1151,7 +1151,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 //////////////////////////////////////////////////////////////////lineas Skeletons
-                if (molecule.LstBondsSkeleton.length>0) 
+                if (molecule.LstBondsSkeleton.length>0)
                 {
                     gl.bindBuffer(gl.ARRAY_BUFFER, colSkeleVerBuf);
                     gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colSkeleVerBuf.itemSize, gl.FLOAT, false, 0, 0);
@@ -1178,7 +1178,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
 
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ///////////////////////////// PARTE DE LOS DÍGITOS ////////////////////////////////////////////////7
-                if (diPosition.length>0) 
+                if (diPosition.length>0)
                 {
                     gl.bindBuffer(gl.ARRAY_BUFFER, diPosBuffer);
                     gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, diPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1662,14 +1662,14 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
                     //alert(atm1.NumberAtom);
                     //alert(parseInt(temp1) + parseInt(atm1.NumberAtom));
                     //alert(coordsX[parseInt(temp1) + parseInt(atm1.NumberAtom)]);
-                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsX[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
                     verLineSkele.push(coordsY[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
                 }
                 else
                 {
-                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx); 
+                    verLineSkele.push(coordsX1[parseInt(temp1) + parseInt(atm1.id) -1] -Cx);
                     verLineSkele.push(coordsY1[parseInt(temp1) + parseInt(atm1.id) -1] -Cy);
                     verLineSkele.push(coordsZ1[parseInt(temp1) + parseInt(atm1.id) -1] -Cz);
 
@@ -1713,7 +1713,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             chaIndex = [];
             diColorDif = [];
 
-            indxOffset=0; 
+            indxOffset=0;
             if (DistanceBool)    //cada frame se van a limpiar y a procesar
             {
                 var count = 2 * Math.floor(AtomosSeleccionados.length/2);
@@ -1835,7 +1835,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             ////////////////////////////////////////////////////////////////////////////////////////
             //////PARTE DE LOS ENLACES
 
-            if (molecule.LstBonds.length>0) 
+            if (molecule.LstBonds.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, colorVertexBuffer);
                 gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colorVertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1861,7 +1861,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
 
             //////////////////////////////////////////////////////////////////lineas Skeletons
-            if (molecule.LstBondsSkeleton.length>0) 
+            if (molecule.LstBondsSkeleton.length>0)
             {
                 gl.bindBuffer(gl.ARRAY_BUFFER, colSkeleVerBuf);
                     gl.vertexAttribPointer(currentProgram.textureCoordAttribute, colSkeleVerBuf.itemSize, gl.FLOAT, false, 0, 0);
@@ -1888,7 +1888,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
             }
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ///////////////////////////// PARTE DE LOS DÍGITOS ////////////////////////////////////////////////7
-                if (diPosition.length>0) 
+                if (diPosition.length>0)
                 {
                     gl.bindBuffer(gl.ARRAY_BUFFER, diPosBuffer);
                     gl.vertexAttribPointer(currentProgram.vertexPositionAttribute, diPosBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -1971,19 +1971,9 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
         button.type="button";
         button.style.fontSize = "15px";
         button.id="playpause";
-        button.style.display="none"
         button.onclick=PauseTraj();
-        zoom.appendChild( button );
+        controles.appendChild( button );
 
-        button = document.createElement( 'button' );
-       button.value = '';
-       button.className = "icon-boton-de-pausa";
-       button.type="button";
-       button.style.fontSize = "15px";
-       button.id="playpause";
-       button.style.display="none"
-       button.onclick=PauseTraj();
-       zoom.appendChild( button );
 
        button = document.createElement( 'button' );
        button.value = 'retroceder';
@@ -1991,9 +1981,8 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
        button.type="button";
        button.style.fontSize = "15px";
        button.id="Rew";
-       button.style.display="none"
        button.onclick=RewFor(1);
-       zoom.appendChild( button );
+       controles.appendChild( button );
 
        button = document.createElement( 'button' );
        button.value = '';
@@ -2001,9 +1990,8 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
        button.type="button";
        button.style.fontSize = "15px";
        button.id="Forw";
-       button.style.display="none"
        button.onclick=RewFor(2);
-       zoom.appendChild( button );
+       controles.appendChild( button );
 
 
        button = document.createElement( 'button' );
@@ -2013,7 +2001,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
        button.type="button";
        button.style.fontSize = "15px";
        button.onclick=zoomin();
-       data.appendChild( button );
+       zoom.appendChild( button );
 
        button = document.createElement( 'button' );
        button.value = '';
@@ -2022,7 +2010,7 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
        button.type="button";
        button.style.fontSize = "15px";
        button.onclick=zoomout();
-       data.appendChild( button );
+       zoom.appendChild( button );
        document.getElementById("Console_input").focus();
 
         tick();
@@ -2102,28 +2090,61 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
     }
     function consola() {
           var panel = document.getElementById("Console");
+          var panel1 = document.getElementById("console_title");
+          var panel2 = document.getElementById("label1");
+          var panel3 = document.getElementById("console_inputdiv");
+          var panel4 = document.getElementById("Console_input");
+          var panel5 = document.getElementById("outputdiv");
+          var panel6 = document.getElementById("Console_output");
           if (panel.style.opacity == 1) {
+            var maxL1 = "0";
+            var maxT1 = "700px";
             panel.style.opacity = 0;
-            //panel.style.transfor.scaleY(0);
+            panel.style.left=maxL1;
+            panel.style.top=maxT1;
+            panel3.style.height = 0;
+            panel3.style.width=0;
+            panel4.style.height = 0;
+            panel4.style.width=0;
+            panel5.style.height = 0;
+            panel5.style.width=0;
+            panel6.style.height = 0;
+            panel4.style.width=0;
 
     } else  {
+            var maxL2 = "50px";
+            var maxT2 = "300px";
+            panel.style.left=maxL2;
+            panel.style.top=maxT2;
             panel.style.opacity = 1;
-            //panel.style.transfor.scaleY(1);
+            var maxH1 = "110px";
+            var maxH2 = "80px";
+            var maxw1 = "245px";
+            var maxw2="220px";
+            panel3.style.height=maxH1;
+            panel3.style.width=maxw1;
+            panel4.style.height=maxH2;
+            panel4.style.width=maxw2;
+            panel5.style.height=maxH1;
+            panel5.style.width=maxw1;
+            panel6.style.height=maxH2;
+            panel6.style.width=maxw2;
           }
 
     }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     </script>
 </head>
 <body   onload="webGLStart();">
-<div id="Console" class="Console" style="background-color:yellow;width:0;height:0;left:50px;top:300px;position:relative;">
-    <div id="console_title"></div>
+<div id="Console" class="Console" style=" opacity: 1; background-color:yellow;width:0;height:0;left:50px;top:300px;position:relative;">
+    <div id="console_title "></div>
     <div id="label1"></div>
-    <div id="console_inputdiv" style="width:245px;height:110px;background-color:white;left:20px;top:20px">&nbsp;&nbsp;&nbsp;Input HTMoL commands
-        <textarea id="Console_input" style="width:220px;height:80px;left:10px" onkeypress="main.onTestChange(event);"></textarea>
+    <div id="console_inputdiv" >&nbsp;&nbsp;&nbsp;Input HTMoL commands
+        <textarea id="Console_input"  onkeypress="main.onTestChange(event);"></textarea>
     </div>
-    <div id="outputdiv" style="width:245px;height:110px;background-color:blue;left:20px;top:20px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTMoL output
-        <textarea id="Console_output" style="width:220px;height:80px;left:10px"></textarea>
+    <div id="outputdiv" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HTMoL output
+        <textarea id="Console_output" ></textarea>
     </div>
 </div>
 <div id="Contenedor">
@@ -2136,9 +2157,6 @@ Copyright (C) 2014  Alvarez Rivera Leonardo,Becerra Toledo Francisco Javier, Veg
     </div>
     <canvas id="canvas" > <!-- not change value -->
 
-    <div id='zoom'>
-
-    </div>
 
 </div>
 
